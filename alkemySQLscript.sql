@@ -105,7 +105,7 @@ ENGINE = InnoDB;
 CREATE TABLE IF NOT EXISTS `AlkemyChallenge`.`usuarios` (
   `idusuarios` INT NOT NULL AUTO_INCREMENT,
   `email_usuario` VARCHAR(45) NOT NULL,
-  `password_usuario` VARCHAR(45) NOT NULL,
+  `password_usuario` LONGTEXT NOT NULL,
   PRIMARY KEY (`idusuarios`))
 ENGINE = InnoDB;
 
