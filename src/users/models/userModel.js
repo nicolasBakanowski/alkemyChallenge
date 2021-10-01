@@ -16,7 +16,8 @@ User.init({
     allowNull: false
   },
   password_usuario: {
-    type: DataTypes.STRING
+    type: DataTypes.STRING,
+    allowNull: false
   },
   
 }, //end first param for init
