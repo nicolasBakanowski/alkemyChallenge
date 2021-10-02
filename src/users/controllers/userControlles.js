@@ -1,36 +1,35 @@
-require('dotenv').config()
+require('dotenv')
 const express = require('express')
 const routeUser = express.Router()
-const { addUser } = require('../services/userService')
+const { addUser, getAuth } = require('../services/userService')
 const bcrypt = require('bcrypt');
+const ensureToken = require('../../middlewares/ensureToken');
+const { request, response } = require('express');
 jwt = require('jsonwebtoken')
 
 
 
-routeUser.post('/api/user/auth/register', (request, response,next) => {
+routeUser.post('/auth/register', (request, response,next) => {
         addUser(request,response)
 });
         
 
-routeUser.get('/api/signin', async function (request, response){
-        let user = await getOneUser(request.body.user)
-        console.log(user)
-        passwordcheck = await bcrypt.compare(request.body.pass, user[0].pass)
-        console.log(passwordcheck)
-        if((request.body.user === user[0].user ) && (passwordcheck)){
-        const payload = {
-            check:  true
-            };
-        const token = jwt.sign(payload, "123",{
-            expiresIn: 60 * 24
-        });
-        response.json({
-            mensaje: 'Autenticación correcta',
-            token: token
-        });
-        } else {
-            response.json({ mensaje: "Usuario o contraseña incorrectos"})
-    }}
+routeUser.get('/auth/login', async function (request, response){
+        getAuth(request,response)
+    }
 
+    )
+routeUser.get('/auth/protec',ensureToken,(request,response)=>{
+    jwt.verify(request.token, process.env.SECRET_KEY_TOKEN,(err,data)=>{
+        if (err){
+            response.sendStatus(403);
+        }
+        else{
+            response.json({
+                text: 'protected'
+            });
+        }
+    }
 )
+});
 module.exports = routeUser

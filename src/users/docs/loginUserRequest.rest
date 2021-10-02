@@ -1,8 +1,8 @@
-POST http://localhost:2203/auth/register
+GET http://localhost:2203/auth/login
 Content-Type: application/json
 
 
 {
     "email_usuario": "nicolasbakanowski@gmail.com",
-    "password":"123"
+    "password_usuario":"123"
 }

@@ -1,0 +1,5 @@
+GET http://localhost:2203/auth/protec
+Content-Type: application/json
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjaGVjayI6dHJ1ZSwiaWF0IjoxNjMzMTM2MTgzLCJleHAiOjE2MzMxMzc2MjN9.cot4MrqNkBDpQo0vYelTVuHCqyHNPE9vAW2cqP3XCcg
+
+
