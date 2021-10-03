@@ -13,6 +13,7 @@ async function addUser(data,response){
       }).then( function(results){
           rows = results
           if (rows ===  0 ){
+            console.log(data.body.email_usuario)
             const newUser =  User.create({
                  email_usuario: data.body.email_usuario,
                  password_usuario: bcrypt.hashSync(data.body.password,10)

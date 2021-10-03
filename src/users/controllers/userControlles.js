@@ -10,6 +10,7 @@ jwt = require('jsonwebtoken')
 
 
 routeUser.post('/auth/register', (request, response,next) => {
+        console.log(request.params.email_usuario)
         addUser(request,response)
 });
         

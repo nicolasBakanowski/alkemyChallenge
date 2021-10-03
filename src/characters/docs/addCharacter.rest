@@ -1,0 +1,11 @@
+POST http://localhost:2203/api/characters/add
+Content-Type: application/json
+
+
+{
+    "imagen_personaje":"aca deberia ir al imagen",
+    "edad_personaje": 34,
+    "peso_personaje": 123,
+    "historia_personaje":"esta es la historia",
+    "nombre_personaje": "Char nuro 2"
+}

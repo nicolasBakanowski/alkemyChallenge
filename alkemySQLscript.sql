@@ -22,10 +22,11 @@ USE `AlkemyChallenge` ;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `AlkemyChallenge`.`personajes` (
   `id_personaje` INT NOT NULL AUTO_INCREMENT,
-  `imagen_personaje` LONGBLOB NULL,
+  `imagen_personaje` VARCHAR(150) NULL,
   `edad_personaje` INT(11) NULL,
   `peso_personaje` INT(11) NULL,
   `historia_personaje` VARCHAR(150) NULL,
+  `nombre_personaje` VARCHAR(45),NULL,
   PRIMARY KEY (`id_personaje`))
 ENGINE = InnoDB;
 
@@ -48,7 +49,7 @@ ENGINE = InnoDB;
 CREATE TABLE IF NOT EXISTS `AlkemyChallenge`.`generos` (
   `id_genero` INT NOT NULL AUTO_INCREMENT,
   `nombre_genero` VARCHAR(45) NULL,
-  `imagen_genero` BLOB NULL,
+  `imagen_genero` VARCHAR(150) NULL,
   PRIMARY KEY (`id_genero`))
 ENGINE = InnoDB;
 

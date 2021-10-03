@@ -14,7 +14,7 @@ Character.init({
         type: Sequelize.INTEGER
   }, 
   imagen_personaje: {
-    type: sequelize.BLOB,
+    type: Sequelize.STRING,
     allowNull: false
   },
   edad_personaje: {
@@ -27,6 +27,9 @@ Character.init({
   historia_personaje: {
     type: Sequelize.STRING
   },
+  nombre_personaje:{
+    type:Sequelize.STRING
+  }
   
 }, //end first param for init
 
