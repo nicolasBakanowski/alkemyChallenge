@@ -12,7 +12,7 @@ Film.init({
   }, 
     // Model attributes are defined here
   titulo_filmacion: {
-    type: DataTypes.STRING,
+    type: Sequelize.STRING,
     allowNull: false
   },
   fechacreacion_filmacion: {
@@ -20,6 +20,9 @@ Film.init({
   },
   calificacion_filmacion: {
     type: Sequelize.DECIMAL
+  },
+  imagen_filmacion:{
+    type: Sequelize.STRING    
   },
   
 }, //end first param for init
@@ -30,9 +33,6 @@ Film.init({
 },
   {timestamps:false},
 );
-
-// `sequelize.define` also returns the model
-console.log(Film === sequelize.models.Film); // true
 
 
 

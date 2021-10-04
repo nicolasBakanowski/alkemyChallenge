@@ -16,7 +16,7 @@ Gender.init({
     allowNull: false
   },
   imagen_genero: {
-    type: Sequelize.BLOB                   
+    type: Sequelize.STRING                   
   },
    
 }, //end first param for init

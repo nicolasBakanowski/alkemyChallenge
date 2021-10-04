@@ -7,6 +7,7 @@ const deleteChar = require('../services/deleteCharacterService')
 const editChar = require('../services/editCharacterService')
 const listCharacters = require('../services/listCharacterService')
 const {filterCharactersByName,filterCharactersByAge, filterCharactersByMovie} = require('../services/filterCharacterService')
+const filmCharList = require('../../char_film/services/charFIlmService')
 const ensureToken = require('../../middlewares/ensureToken');
 const { request, response } = require('express')
 const upload = require('../../../uploadEngine');
@@ -18,11 +19,9 @@ jwt = require('jsonwebtoken')
 routeChar.get('/characters', (request, response,next) => {
     console.log(request.query.name)
         if(request.query.name != undefined){
-            console.log("no deberia entrar aca")
            filterCharactersByName(request.query.name,response) 
         }
         else{
-            console.log("deberia entrar por aca")
             if(request.query.age != undefined){
                 filterCharactersByAge(request.query.age,response)
             }
@@ -39,7 +38,7 @@ routeChar.get('/characters', (request, response,next) => {
 
 
 
-routeChar.post('/api/characters/add',upload.single('imagen_personaje'),(request, response,next) => {
+routeChar.post('/api/characters/add',upload.single('imagen_personaje'),ensureToken,(request, response,next) => {
     jwt.verify(request.token, process.env.SECRET_KEY_TOKEN,(err,data)=>{
         if (err){
             response.sendStatus(403).json({"mensagge":"protectedroute"});
@@ -63,7 +62,7 @@ routeChar.delete('/api/characters/delete/',ensureToken,(request, response,next) 
     })
 });
 
-routeChar.put('/api/characters/edit/', (request, response,next) => {
+routeChar.put('/api/characters/edit/',ensureToken, (request, response,next) => {
     jwt.verify(request.token, process.env.SECRET_KEY_TOKEN,(err,data)=>{
         if (err){
             response.sendStatus(403).json({"mensagge":"protectedroute"});
