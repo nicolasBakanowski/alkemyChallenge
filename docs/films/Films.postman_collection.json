@@ -1,0 +1,169 @@
+{
+	"info": {
+		"_postman_id": "3bd61996-4e3a-413e-9fcc-0ea996f2e061",
+		"name": "Films",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "addFilm",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "titulo_filmacion",
+							"value": "test",
+							"type": "text"
+						},
+						{
+							"key": "fechacreacion_filmacion",
+							"value": "test",
+							"type": "text"
+						},
+						{
+							"key": "calificacion_filmacion",
+							"value": "test",
+							"type": "text"
+						},
+						{
+							"key": "imagen_filmacion",
+							"type": "file",
+							"src": "screenshot_2.png"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:4000/api/films/add",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"api",
+						"films",
+						"add"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "listFilms",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:4000/movies?name=PROBANDO",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"movies"
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "PROBANDO"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "deleteFilms",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:4000/api/films/delete/:idfilm",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"api",
+						"films",
+						"delete",
+						":idfilm"
+					],
+					"variable": [
+						{
+							"key": "idfilm",
+							"value": "3"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "editFIlms",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "token",
+						"value": " ",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "id_filmacion",
+							"value": "2",
+							"type": "text"
+						},
+						{
+							"key": "titulo_filmacion",
+							"value": "PROBANDO",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "fechacreacion_filmacion",
+							"value": "1920/01/10",
+							"type": "text"
+						},
+						{
+							"key": "calificacion_filmacion",
+							"value": "44",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "imagen_filmacion",
+							"type": "file",
+							"src": "screenshot_1.png",
+							"disabled": true
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:4000/api/films/edit/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"api",
+						"films",
+						"edit",
+						""
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

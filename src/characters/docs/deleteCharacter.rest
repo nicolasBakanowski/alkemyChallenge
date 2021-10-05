@@ -1,7 +1,0 @@
-DELETE  http://localhost:2203/api/characters/delete/
-Content-Type: application/json
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjaGVjayI6dHJ1ZSwiaWF0IjoxNjMzMjUzMDE2LCJleHAiOjE2MzMyNTQ0NTZ9.NTc8yeu23y6IEzZAoHUy7FZ9uiuud9XsEOe0xlMpSGo
-
-{
-   "id_personaje": 4
-}

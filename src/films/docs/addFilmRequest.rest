@@ -1,8 +1,0 @@
-POST  http://localhost:4000/api/films/add
-Content-Type: application/json
-
-{
-    "titulo_filmacion": "prince of percia",                 
-    "fechacreacion_filmacion": "21/12/1991",
-    "calificacion_filmacion": "2.2"
-}
