@@ -8,7 +8,7 @@ require('dotenv')
 async function addFilm(data,response){
     let exist = Film.count({
         where: {
-          titulo_filmacion: data.body.titulo_filmacion
+          titulo_filmacion: data.body.titulo_filmacion.toUpperCase()
         }
       }).then( function(results){
           rows = results
@@ -16,7 +16,7 @@ async function addFilm(data,response){
               console.log("por aca no es ")
               console.log(data.file)
             const newFilm =  Film.create({
-                 titulo_filmacion: data.body.titulo_filmacion,                 
+                 titulo_filmacion: data.body.titulo_filmacion.toUpperCase(),                 
                  fechacreacion_filmacion:data.body.fechacreacion_filmacion,
                  calificacion_filmacion: parseFloat(data.body.calificacion_filmacion),
                  imagen_filmacion: data.file.path,

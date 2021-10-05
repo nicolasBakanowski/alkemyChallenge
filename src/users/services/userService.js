@@ -1,6 +1,7 @@
 const { response, request } = require('express')
 const User = require('../models/userModel')
 const bcrypt = require('bcrypt');
+const { authenticate } = require('../../../connection');
 require('dotenv') 
 
 

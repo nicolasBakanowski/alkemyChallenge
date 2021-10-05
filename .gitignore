@@ -1,7 +1,8 @@
 
-
-node_mdules
+.gitignore
+node_modules
 .env
 package-lock.json
 Pipfile
 image_upload
+sendgrid.env

@@ -1,5 +1,7 @@
 const { response, request } = require('express')
 const Film = require('../model/Film')
+const GenderFilm = require('../../gender_film')
+const Gender = require('../../genders/models')
 const bcrypt = require('bcrypt');
 require('dotenv') 
 
@@ -13,26 +15,58 @@ async function filterFilmByName(name,response){
         })
         .then(function(results){
             let jsonFilm = JSON.stringify(results,null)
-            return response.status(201).json({characters: jsonCharacters  })
+            return response.status(201).json({characters: jsonFilm  })
         }
         )}
 
 
-async function filterFilmByGender(age,response){        
-    let exist = Character.findAll({
-        where: {
-          edad_personaje: age
+
+async function filterFilmByGender(idgender,response){        
+    Film.hasMany(GenderFilm, {foreignKey: 'id_filmacion'})
+    const film = Film.findAll({
+        include:[{
+            model: GenderFilm, 
+            where:{id_genero: parseInt(idgender)},
+        }]     
+    }
+      ).then(
+        function(results){
+            results.forEach(element=>console.log(element));
+            let jsonMovies= JSON.stringify(results,null)
+            Gender.findAll({
+                where: {
+                  id_genero: parseInt(idgender)
+                }
+                }).then(
+                    function(results){
+                        if (results.length === 0){
+                            return respone.status(400).json({status:"no hay un personaje con ese id "})
+                        }else{
+                            let jsonGender = JSON.stringify(results,null)
+                            return response.status(201).json({movies: jsonMovies, character: jsonGender })
+                        }
+                    }
+                )
+                
         }
-        })
-        .then(function(results){
-            let jsonCharacters = JSON.stringify(results,null)
-            return response.status(201).json({characters: jsonCharacters})
-            }
-        )}
-
-
-        async function filterCharactersByMovie(request,response){        
+    )
+}
+async function orderFilm(order,response){
+  if (order == 'DESC' || order == 'ASC' ){
+    let exist = Film.findAll({
+      order: [
+        ['fechaCreacion_filmacion', order]
+    ]
+    })
+    .then(function(results){
+        let jsonFilm = JSON.stringify(results,null)
+        return response.status(201).json({characters: jsonFilm  })
+    }
+    )}
+  else{
+    return response.status(400).json({mensage:"no valid order only ASC or DESC"})
+  } 
 }
 
-
-module.exports = {filterCharactersByName,filterCharactersByAge,filterCharactersByMovie}
+           
+module.exports = {filterFilmByName,filterFilmByGender,orderFilm}

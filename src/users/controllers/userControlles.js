@@ -5,13 +5,20 @@ const { addUser, getAuth } = require('../services/userService')
 const bcrypt = require('bcrypt');
 const ensureToken = require('../../middlewares/ensureToken');
 const { request, response } = require('express');
+const validateEmail = require('../functions/checkemail')
+const SendEmail =require('../functions/emailEngine')
 jwt = require('jsonwebtoken')
 
 
 
 routeUser.post('/auth/register', (request, response,next) => {
-        console.log(request.params.email_usuario)
+    if (validateEmail(request.body.email_usuario)){
         addUser(request,response)
+        SendEmail(request.body.email_usuario)
+    }
+    else{
+        return response.status(200).json({mensage:"el email no es valido"})
+    }
 });
         
 
