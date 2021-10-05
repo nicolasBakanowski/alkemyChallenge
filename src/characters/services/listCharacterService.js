@@ -5,7 +5,7 @@ require('dotenv')
 
 
 
-async function listCharacters(response){
+async function listCharacters(request,response){
     let exist = Character.count({
       }).then( function(results){
           rows = results

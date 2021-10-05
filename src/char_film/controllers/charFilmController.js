@@ -2,11 +2,8 @@ require('dotenv')
 const express = require('express')
 const routeCharFilm = express.Router()
 const bcrypt = require('bcrypt');
-const filmCharList = require('../char_film/services/charFIlmService')
-const ensureToken = require('../../middlewares/ensureToken');
+const filmCharList = require('../services/charFIlmService')
 const { request, response } = require('express')
-const upload = require('../../../uploadEngine');
-const { route } = require('../../users/controllers/userControlles');
 jwt = require('jsonwebtoken')
 
 

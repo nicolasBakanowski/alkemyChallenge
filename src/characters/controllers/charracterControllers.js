@@ -7,7 +7,6 @@ const deleteChar = require('../services/deleteCharacterService')
 const editChar = require('../services/editCharacterService')
 const listCharacters = require('../services/listCharacterService')
 const {filterCharactersByName,filterCharactersByAge, filterCharactersByMovie} = require('../services/filterCharacterService')
-const filmCharList = require('../../char_film/services/charFIlmService')
 const ensureToken = require('../../middlewares/ensureToken');
 const { request, response } = require('express')
 const upload = require('../../../uploadEngine');
@@ -17,7 +16,7 @@ jwt = require('jsonwebtoken')
 
 
 routeChar.get('/characters', (request, response,next) => {
-    console.log(request.query.name)
+    console.log(request.query.idMovie)
         if(request.query.name != undefined){
            filterCharactersByName(request.query.name,response) 
         }
@@ -27,9 +26,10 @@ routeChar.get('/characters', (request, response,next) => {
             }
             else{
                 if(request.query.idMovie != undefined){
-                    filterCharactersByAge(request.query.idMovie,response)
+                    console.log("entra por el if")
+                    filterCharactersByMovie(request.query.idMovie,response)
                 }else{
-                    listCharacters(response)     
+                    listCharacters(request,response)     
             }
         }
 
