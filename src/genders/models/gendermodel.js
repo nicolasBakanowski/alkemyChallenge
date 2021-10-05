@@ -1,9 +1,10 @@
 const { Sequelize, DataTypes, Model } = require('sequelize');
 const sequelize = require('../../../connection')
 
-class GenderFilm extends Model {}
+class Gender extends Model {}
 
-GenderFilm.init({
+Gender.init({
+
       // Model attributes are defined here
 
   id_genero:{
@@ -12,14 +13,18 @@ GenderFilm.init({
         primaryKey: true,
         type: Sequelize.INTEGER
   }, 
-  nombre_genero: {
-    allowNull: false,
-    type: Sequelize.STRING
+
+  nombre_genero:{
+    type:Sequelize.STRING
   },
+
   imagen_genero: {
-    allowNull: false,
-    type: Sequelize.STRING
-  }
+    type: Sequelize.STRING,
+    allowNull: false
+  },
+
+
+
   
 }, //end first param for init
 
@@ -33,4 +38,4 @@ GenderFilm.init({
 // `sequelize.define` also returns the model
 
 
-module.exports = GenderFilm 
+module.exports = Gender 

@@ -9,29 +9,50 @@ const ensureToken = require('../../middlewares/ensureToken');
 const { request, response } = require('express')
 const upload = require('../../../uploadEngine');
 const deleteFilm = require('../services/deleteFilmService');
+const controlFieldfilm = require('../functions/controlfieldfilms')
+const {filterFilmByName, filterFilmByGender, orderFilm} = require('../services/filterFilmService')
 jwt = require('jsonwebtoken')
 
 
 
 routeFilm.get('/movies', (request, response,next) => {
-        listFilm(response)
+        if(request.query.name != undefined){
+                filterFilmByName(request.query.name.toUpperCase(),response) 
         }
+        else{
+                if(request.query.genre != undefined){
+                        filterFilmByGender(request.query.age,response)
+                }
+                else{
+                        if(request.query.order != undefined){
+                                orderFilm(request.query.order,response)
+                }
+                        else{
+                                   listFilm(response)
+                        }
+                }
+        }
+}
 )
    
      
 routeFilm.post('/api/films/add',upload.single('imagen_filmacion'),(request, response,next) => {
-        addFilm(request,response)
+        if (controlFieldfilm(request)){
+                return response.status(422).json({satus:"dont send the information correctly, need ALL fields "})        
+        }else{
+                addFilm(request,response)
+        }
     });
-
 
 routeFilm.delete('/api/films/delete/:idfilm',(request,response)=>{
         deleteFilm(request,response)
 });
 
 routeFilm.put('/api/films/edit',upload.single('imagen_filmacion'),(request,response)=>{
-        console.log("aca entra")
-        console.log(request.body.id_filmacion)
-        editFilm(request,response)
+        if (request.body.id_filmacion === undefined){
+                return response.status(422).json({satus:"dont send the information correctly, need idfilm "})        
+        }else{
+                editFilm(request,response)}
 }
 )
 module.exports = routeFilm

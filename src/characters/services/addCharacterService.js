@@ -18,7 +18,7 @@ async function addChar(data,response){
                  edad_personaje: parseInt(data.body.edad_personaje),
                  peso_personaje: parseFloat(data.body.peso_personaje),
                  historia_personaje: data.body.historia_personaje,
-                 nombre_personaje: data.body.nombre_personaje
+                 nombre_personaje: data.body.nombre_personaje.toUpperCase()
 
                  
             })

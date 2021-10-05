@@ -1,7 +1,7 @@
 const { response, request } = require('express')
-const Film = require('../model/Film')
-const GenderFilm = require('../../gender_film')
-const Gender = require('../../genders/models')
+const Film = require('../model/film')
+const GenderFilm = require('../../gender_film/model/genderFilm')
+const Gender = require('../../genders/models/gendermodel')
 const bcrypt = require('bcrypt');
 require('dotenv') 
 
